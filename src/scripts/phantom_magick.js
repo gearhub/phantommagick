@@ -47,7 +47,7 @@ if (system.args.length < 3 || system.args.length > 8) {
             window.setTimeout(function () {
                 page.render(output, {quality: quality});
                 phantom.exit();
-            }, 200);
+            }, 3000);
         }
     });
 }
