@@ -14,7 +14,7 @@ if (system.args.length < 3 || system.args.length > 8) {
 } else {
     address = system.args[1];
     output = system.args[2];
-    page.viewportSize = { width: 1280, height: 720 };
+    page.viewportSize = { width: 1024, height: 1325 };
     if (system.args.length > 3 && system.args[2].substr(-4) === ".pdf") {
         size = system.args[3].split('*');
         page.paperSize = size.length === 2 ? { width: size[0], height: size[1], margin: margin }
