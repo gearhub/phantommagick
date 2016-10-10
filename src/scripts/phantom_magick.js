@@ -14,9 +14,12 @@ if (system.args.length < 3 || system.args.length > 8) {
 } else {
     address = system.args[1];
     output = system.args[2];
-    page.viewportSize = { width: 1024, height: 1325 };
+    page.viewportSize = { width: 1280, height: 720 };
     if (system.args.length > 3 && system.args[2].substr(-4) === ".pdf") {
         size = system.args[3].split('*');
+        pageWidth = parseInt(size[0], 10);
+        pageHeight = parseInt(size[1], 10);
+        page.viewportSize = { width: pageWidth, height: pageHeight };
         page.paperSize = size.length === 2 ? { width: size[0], height: size[1], margin: margin }
                                            : { format: system.args[3], orientation: orientation, margin: margin };
     } else if (system.args.length > 3 && system.args[3].substr(-2) === "px") {
@@ -39,13 +42,13 @@ if (system.args.length < 3 || system.args.length > 8) {
     if (system.args.length > 4) {
         page.zoomFactor = system.args[4];
     }
-    
-    // Add better error reporting when url fails to load. 
+
+    // Add better error reporting when url fails to load.
     page.onResourceError = function(resourceError) {
         page.reason = resourceError.errorString;
         page.reason_url = resourceError.url;
     };
-    
+
     page.open(address, function (status) {
         if (status !== 'success') {
             console.log('Unable to load the address!');
